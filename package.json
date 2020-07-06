@@ -1,0 +1,23 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "buliding project using nodeJs,express and mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santoshkumar964887/tours_nodeJsMajorProject.git"
+  },
+  "author": "sanntosh kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santoshkumar964887/tours_nodeJsMajorProject/issues"
+  },
+  "homepage": "https://github.com/santoshkumar964887/tours_nodeJsMajorProject#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
