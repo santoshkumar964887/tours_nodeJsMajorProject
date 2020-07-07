@@ -81,6 +81,35 @@ const deleteOnetour=(req, res) => {
     });
   };
 
+
+
+
+  const getAllusers=(req,res)=>{
+      res.status(500).send({
+          "massage":"internal servere error"
+      });
+  };
+  const createNewuser=(req,res)=>{
+    res.status(500).send({
+        "massage":"internal servere error"
+    });
+};
+const getOneuser=(req,res)=>{
+    res.status(500).send({
+        "massage":"internal servere error"
+    });
+};
+const updateuser=(req,res)=>{
+    res.status(500).send({
+        "massage":"internal servere error"
+    });
+};
+const deleteOneuser=(req,res)=>{
+    res.status(500).send({
+        "massage":"internal servere error"
+    });
+};
+
 //app.get("/api/v1/tours", getAlltour);
 //app.get("/api/v1/tours/:id", getOnetour);
 //app.post("/api/v1/tours",createNewtour );
@@ -88,6 +117,9 @@ const deleteOnetour=(req, res) => {
 //app.delete("/api/v1/tours/:id", deleteOnetour);
 app.route("/api/v1/tours").get(getAlltour).post(createNewtour);
 app.route("/api/v1/tours/:id").get(getOnetour).patch(updatetour).delete(deleteOnetour);
+app.route("/api/v1/users").get(getAllusers).post(createNewuser);
+app.route("/api/v1/users/:id").get(getOneuser).patch(updateuser).delete(deleteOneuser);
+
 
 
 const port = 3000;
