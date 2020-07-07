@@ -3,6 +3,8 @@ const fs=require('fs');
 const app=express();
 app.use(express.json());
 const tours=JSON.parse(fs.readFileSync(`${__dirname}/starter/dev-data/data/tours.json`));
+
+
 app.get('/api/v1/tours',(req,res)=>{
     res.status(200).json({
         "status":'success',
@@ -13,6 +15,68 @@ app.get('/api/v1/tours',(req,res)=>{
     });
 
 });
+
+
+app.get('/api/v1/tours/:id',(req,res)=>{
+    console.log(req.prams)
+    const id =req.params.id*1;
+    const match=tours.find(el=>el.id===id);
+    if(!match){
+        res.status(404).json({
+            "status":'Fail',
+            "message":'Invalid Id'
+        });
+
+    }
+    res.status(200).json({
+        "status":'success',
+        'length':tours.length,
+        'data':{
+            match
+        }
+    });
+
+});
+
+app.patch('/api/v1/tours/:id',(req,res)=>{
+    console.log(req.prams)
+    const id =req.params.id*1;
+   if(tours.length<id){
+       res.status(404).json({
+    "status":'Fail',
+    "message":'Invalid Id'
+});
+
+}
+res.status(200).json({
+"status":'success'
+});
+
+   
+});
+
+
+app.delete('/api/v1/tours/:id',(req,res)=>{
+    console.log(req.prams)
+    const id =req.params.id*1;
+   if(tours.length<id){
+       res.status(404).json({
+    "status":'Fail',
+    "message":'Invalid Id'
+});
+
+}
+res.status(200).json({
+"status":'success'
+});
+
+   
+});
+
+
+
+
+
 app.post('/api/v1/tours',(req,res)=>{
     //console.log(req.body);
     let reqdata=req.body;
