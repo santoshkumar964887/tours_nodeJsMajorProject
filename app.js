@@ -115,10 +115,17 @@ const deleteOneuser=(req,res)=>{
 //app.post("/api/v1/tours",createNewtour );
 //app.patch("/api/v1/tours/:id",updatetour );
 //app.delete("/api/v1/tours/:id", deleteOnetour);
-app.route("/api/v1/tours").get(getAlltour).post(createNewtour);
-app.route("/api/v1/tours/:id").get(getOnetour).patch(updatetour).delete(deleteOnetour);
-app.route("/api/v1/users").get(getAllusers).post(createNewuser);
-app.route("/api/v1/users/:id").get(getOneuser).patch(updateuser).delete(deleteOneuser);
+
+const tourRouter=express.Router();
+const userRuter=express.Router();
+
+tourRouter.route("/").get(getAlltour).post(createNewtour);
+tourRouter.route("/:id").get(getOnetour).patch(updatetour).delete(deleteOnetour);
+userRuter.route("/").get(getAllusers).post(createNewuser);
+userRuter.route("/:id").get(getOneuser).patch(updateuser).delete(deleteOneuser);
+
+app.use("/api/v1/tours",tourRouter);
+app.use("/api/v1/users",userRuter);
 
 
 
