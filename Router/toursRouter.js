@@ -8,11 +8,11 @@ const tourRouter = express.Router();
 //app.patch("/api/v1/tours/:id",updatetour );
 //app.delete("/api/v1/tours/:id", deleteOnetour);
 
-tourRouter.param("id", tourControlle.checkid);
+//tourRouter.param("id", tourControlle.checkid);
 tourRouter
   .route("/")
   .get(tourControlle.getAlltour)
-  .post(tourControlle.checkReqbody,tourControlle.createNewtour);
+  .post(tourControlle.createNewtour);
 tourRouter
   .route("/:id")
   .get(tourControlle.getOnetour)
