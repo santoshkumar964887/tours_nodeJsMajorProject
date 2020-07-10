@@ -1,5 +1,5 @@
 const mongooes=require('mongoose');
-const tourSchema=  new mongoose.Schema(
+const tourSchema=  new mongooes.Schema(
   {
     name: {
       type: String,
