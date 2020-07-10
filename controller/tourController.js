@@ -1,7 +1,6 @@
-const fs = require("fs");
-const tourModel=require('./../model/tourmodel');
-const { json } = require("express");
-  /*exports.checkReqbody=(req,res,next)=>{
+const tourModel = require("./../model/tourmodel");
+
+/*exports.checkReqbody=(req,res,next)=>{
     const {name}=req.body;
     
     if (!name) {
@@ -25,62 +24,74 @@ const { json } = require("express");
     next();
     
   };*/
- exports.getAlltour = async (req, res) => {
-  try{ 
-  const tour=await tourModel.find({ });
-   res.status(200).json({
+exports.getAlltour = async (req, res) => {
+  try {
+    const tour = await tourModel.find();
+    res.status(200).json({
       status: "success",
       length: tour.length,
-      dtaa:{
-        data
+      data: {
+        tour
       }
     });
-  }
-  catch(err){
-    res.status(400).json({
-      status:"fail",
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
 
-      message:err
-    })
+      message: err
+    });
   }
-  };
- exports.getOnetour = (req, res) => {
-    console.log(req.prams);
-    const id = req.params.id * 1;
-    //const newtour=new tourModel({});
-    //newtour.save();
-    tourModel.create({})
-    
-  };
- exports.createNewtour = async (req, res) => {
-    //console.log(req.body);
-    try{
-    let data= await tourModel.create(req.body);
+};
+exports.getOnetour = async (req, res) => {
+  
+   
+  try {
+    const tour =await tourModel.findById(req.params.id);
+    res.status(200).json({
+      status: "success",
+      length: tour.length,
+      data: {
+        tour
+      }
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: "fail",
+
+      message: err
+    });
+  }
+  
+  
+};
+exports.createNewtour = async (req, res) => {
+  //console.log(req.body);
+  //const newtour=new tourModel({});
+  //newtour.save();
+  try {
+    let data = await tourModel.create(req.body);
     res.status(201).json({
-      status:"success",
-      data:{
+      status: "success",
+      data: {
         data
       }
-    })
-    }
-    catch(err){
-      res.status(400).json({
-        status:"fail",
-        message: err
-      })
-    }
-    
-    
-  };
-  exports.updatetour = (req, res) => {
-    res.status(200).json({
-      status: "success",
     });
-  };
-  exports.deleteOnetour = (req, res) => {
-    console.log(req.prams);
-   
-    res.status(200).json({
-      status: "success",
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
     });
-  };
+  }
+};
+exports.updatetour = (req, res) => {
+  res.status(200).json({
+    status: "success",
+  });
+};
+exports.deleteOnetour = (req, res) => {
+  console.log(req.prams);
+
+  res.status(200).json({
+    status: "success",
+  });
+};
