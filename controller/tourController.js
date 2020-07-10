@@ -105,10 +105,18 @@ exports.updatetour = async(req, res) => {
   }
  
 };
-exports.deleteOnetour = (req, res) => {
-  console.log(req.prams);
-
-  res.status(200).json({
-    status: "success",
-  });
+exports.deleteOnetour = async (req, res) => {
+  try {
+    const tour= await tourModel.findByIdAndDelete(req.params.id);
+    
+      res.status(200).json({
+        status: "success"
+      });
+    } catch (err) {
+      res.status(404).json({
+        status: "fail",
+  
+        message: err
+      });
+    }
 };
