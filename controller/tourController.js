@@ -1,5 +1,6 @@
 const fs = require("fs");
 const tourModel=require('./../model/tourmodel');
+const { json } = require("express");
   /*exports.checkReqbody=(req,res,next)=>{
     const {name}=req.body;
     
@@ -24,20 +25,51 @@ const tourModel=require('./../model/tourmodel');
     next();
     
   };*/
- exports.getAlltour = (req, res) => {
-    res.status(200).json({
-      status: "success"
+ exports.getAlltour = async (req, res) => {
+  try{ 
+  const tour=await tourModel.find({ });
+   res.status(200).json({
+      status: "success",
+      length: tour.length,
+      dtaa:{
+        data
+      }
     });
+  }
+  catch(err){
+    res.status(400).json({
+      status:"fail",
+
+      message:err
+    })
+  }
   };
  exports.getOnetour = (req, res) => {
     console.log(req.prams);
     const id = req.params.id * 1;
+    //const newtour=new tourModel({});
+    //newtour.save();
+    tourModel.create({})
     
   };
- exports.createNewtour = (req, res) => {
+ exports.createNewtour = async (req, res) => {
     //console.log(req.body);
-    let reqdata = req.body;
-    let newId = tours.length + 1;
+    try{
+    let data= await tourModel.create(req.body);
+    res.status(201).json({
+      status:"success",
+      data:{
+        data
+      }
+    })
+    }
+    catch(err){
+      res.status(400).json({
+        status:"fail",
+        message: err
+      })
+    }
+    
     
   };
   exports.updatetour = (req, res) => {
