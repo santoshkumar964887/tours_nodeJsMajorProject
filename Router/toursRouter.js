@@ -11,7 +11,7 @@ const tourRouter = express.Router();
 //tourRouter.param("id", tourControlle.checkid);
 tourRouter
   .route("/top-5-chef")
-  .get(tourControlle.Aliasing, tourControlle.getAlltour);
+  .get(tourControlle.AliasingToptour, tourControlle.getAlltour);
 tourRouter
   .route("/")
   .get(tourControlle.getAlltour)
