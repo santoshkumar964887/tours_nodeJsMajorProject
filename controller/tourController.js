@@ -25,6 +25,12 @@ const { Error } = require("mongoose");
     next();
     
   };*/
+  exports.Aliasing=(req,res,next)=>{
+    req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
+  next();
+  }
 exports.getAlltour = async (req, res) => {
   try {
     const queryobj = { ...req.query };
