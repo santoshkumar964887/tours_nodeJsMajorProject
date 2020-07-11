@@ -32,7 +32,6 @@ exports.getAlltour = async (req, res) => {
     excludefields.forEach(el=> delete queryobj[el]);
     let queryString=JSON.stringify(queryobj);
     queryString= queryString.replace(/\b(gte|gt|lte|lt)\b/g,match=>`$${match}`);
-    console.log(queryString);
     const tour = await tourModel.find(JSON.parse(queryString));
     res.status(200).json({
       status: "success",
