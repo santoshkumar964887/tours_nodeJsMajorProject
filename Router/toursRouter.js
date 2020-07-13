@@ -10,6 +10,13 @@ const tourRouter = express.Router();
 
 //tourRouter.param("id", tourControlle.checkid);
 tourRouter
+  .route("/monthwise-plan/:year")
+  .get(tourControlle.gettourMonthly);
+
+tourRouter
+  .route("/getstats")
+  .get(tourControlle.gettourStats)
+tourRouter
   .route("/top-5-chef")
   .get(tourControlle.AliasingToptour, tourControlle.getAlltour);
 tourRouter
