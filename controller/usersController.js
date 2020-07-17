@@ -6,21 +6,10 @@ exports.getAllusers = (req, res) => {
     });
   };
   exports.createNewuser = async(req, res) => {
-    try{
-      console.log(req.body);
-    const user= await userModel.create(req.body);
-    res.status(201).json({
-      status:'success',
-      data:{
-        user
-      }
-    })
-    }catch(err){
-    res.status(400).send({
-      status:'Fail',
-      massage: err,
+    res.status(500).send({
+      massage: "internal servere error",
     });
-  }
+    
   };
   exports.getOneuser = (req, res) => {
     res.status(500).send({
