@@ -1,6 +1,7 @@
 //const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt=require('bcryptjs');
 //const bcrypt = require('bcryptjs');
 const userschema=new mongoose.Schema({
     name: {
@@ -36,6 +37,7 @@ const userschema=new mongoose.Schema({
           },
           message: 'Passwords are not the same!'
         }
+    
       },
       passwordChangedAt: Date,
       passwordResetToken: String,
@@ -45,6 +47,13 @@ const userschema=new mongoose.Schema({
         default: true,
         select: false
       }
+});
+
+userschema.pre('save', async function(next){
+  if(!this.isModified('password')) return next();
+  this.password= await bcrypt.hash(this.password,12);
+  this.passwordConfirm=undefined;
+  next();
 });
 
 const tourModel=mongoose.model('user',userschema);
