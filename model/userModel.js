@@ -55,6 +55,9 @@ userschema.pre('save', async function(next){
   this.passwordConfirm=undefined;
   next();
 });
+userschema.methods.confirmpassword = async function(userpass,password){
+  return await bcrypt.compare(userpass,password);
+}
 
 const tourModel=mongoose.model('user',userschema);
 module.exports=tourModel;
